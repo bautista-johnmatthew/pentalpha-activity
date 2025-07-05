@@ -4,13 +4,7 @@ NOTES_DB = 'notes.db'
 
 # A decorator is a function na nag execute before another function
 # So this decorator makes sure the database is created before any function call
-def create_database(func):
-    """Decorator to create a database if it doesn't exist."""
-
-    # This wrapper is the actual functionality that will be executed
-    # when the decorated function 'create_database' is attached
-    def wrapper(*args, **kwargs):
-        print("Creating database if it doesn't exist...")
+def create_database():
         conn = sqlite3.connect(NOTES_DB)
         cursor = conn.cursor()
         cursor.execute('CREATE TABLE IF NOT EXISTS notes '
@@ -18,11 +12,7 @@ def create_database(func):
                 + 'created_date DATE DEFAULT (datetime(\'now\')))')
         conn.commit()
         conn.close()
-        return func(*args, **kwargs)
-    
-    return wrapper
 
-@create_database
 def add_note(note):
     """Function to add a note to the database."""
     print("Adding note to the database...")
@@ -43,7 +33,7 @@ def add_note(note):
         "created_date": new_note[2]
     }
 
-@create_database
+
 def view_notes():
     """Function to view all notes in the database."""
     print("Retrieving notes from the database...")
@@ -63,7 +53,7 @@ def view_notes():
 
     return formatted_notes
 
-@create_database
+
 def update_note(id, new_contents):
     conn = sqlite3.connect(NOTES_DB)
     cursor = conn.cursor()
@@ -79,7 +69,7 @@ def update_note(id, new_contents):
         "new_contents": new_contents
     }
 
-@create_database
+
 def delete_note(id):
     """ Function to delete a note from the database by ID."""
     conn = sqlite3.connect(NOTES_DB)
@@ -92,7 +82,3 @@ def delete_note(id):
         return {"error": f"Note with ID {id} does not exist."}
 
     return {"message": f"Note with ID {id} has been deleted."}
-
-
-
-
