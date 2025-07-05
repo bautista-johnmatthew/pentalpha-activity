@@ -31,6 +31,20 @@ def delete_notes(note):
 def put_notes(note):
     return jsonify(update_note())
 
+@app.route("/notes/<id>", methods = ['GET'])
+def search_note(id, notes):
+    indexed_note = None
+
+    for note in notes:
+        if note[0] == id:
+            indexed_note = {
+                "contents": note[1],
+                "created_date": note[2],
+                "id": note[0]
+            }
+
+    return indexed_note
+
 if __name__ == '__main__':
     app.run(debug=True)
 
