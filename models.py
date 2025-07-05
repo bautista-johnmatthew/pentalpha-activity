@@ -64,7 +64,7 @@ def view_notes():
     return formatted_notes
 
 @create_database
-def update_note(id, new_contents):
+def update_notes(id, new_contents):
     conn = sqlite3.connect(NOTES_DB)
     cursor = conn.cursor()
     success = cursor.execute('UPDATE notes SET contents = ? WHERE id = ?', (new_contents, id))
