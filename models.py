@@ -92,7 +92,3 @@ def delete_note(id):
         return {"error": f"Note with ID {id} does not exist."}
 
     return {"message": f"Note with ID {id} has been deleted."}
-
-
-
-
