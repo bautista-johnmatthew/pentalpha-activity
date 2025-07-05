@@ -19,8 +19,7 @@ def home_page():
 def get_notes():
     return jsonify(view_notes())
 
-
-@app.route('/notes/<id>', methods=['POST'])
+@app.route('/notes/id', methods=['POST'])
 def post_note(id):
     return jsonify(add_note(id))
 
