@@ -9,7 +9,6 @@ def add_name(func):
         return func()
     return wrapper
 
-
 @app.route('/', methods = ['GET'])
 @add_name
 def home_page():
@@ -47,4 +46,3 @@ def search_note(id, notes):
 
 if __name__ == '__main__':
     app.run(debug=True)
-
