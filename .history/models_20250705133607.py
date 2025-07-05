@@ -45,7 +45,7 @@ def add_note(note):
 
 @create_database
 def view_notes():
-    # """Function to view all notes in the database."""
+    """Function to view all notes in the database."""
     print("Retrieving notes from the database...")
     conn = sqlite3.connect(NOTES_DB)
     cursor = conn.execute('SELECT * FROM notes')
