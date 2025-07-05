@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from models import create_database, add_note, view_notes
 from models import update_note, delete_note
 
-# score: 4/10
+# score: 4/10 - Buenacifra
 
 app = Flask(__name__)
 
